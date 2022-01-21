@@ -5,14 +5,11 @@ import {
   Grid,
   Typography,
   Card,
-  Button,
-  Hidden,
   Box,
   withStyles,
   withWidth,
   isWidthUp,
 } from "@material-ui/core";
-import WaveBorder from "../../../shared/components/WaveBorder";
 import ZoomImage from "../../../shared/components/ZoomImage";
 
 const styles = (theme) => ({
@@ -93,9 +90,6 @@ const styles = (theme) => ({
       maxWidth: "none !important",
     },
   },
-  waveBorder: {
-    paddingTop: theme.spacing(4),
-  },
 });
 
 function HeadSection(props) {
@@ -112,65 +106,54 @@ function HeadSection(props) {
             >
               <div className={classNames(classes.containerFix, "container")}>
                 <Box justifyContent="space-between" className="row">
+                  <Grid item md={6}>
+                    <ZoomImage
+                      src={`${process.env.PUBLIC_URL}/house.png`}
+                      className={classes.image}
+                      alt="header example"
+                    />
+                  </Grid>
                   <Grid item xs={12} md={5}>
                     <Box
                       display="flex"
                       flexDirection="column"
-                      justifyContent="space-between"
+                      justifyContent="center"
                       height="100%"
                     >
                       <Box mb={4}>
                         <Typography
                           variant={isWidthUp("lg", width) ? "h3" : "h4"}
                         >
-                          Free Template for building a SaaS app using
-                          Material-UI
+                          Banana republic
+                          <Typography
+                            variant={isWidthUp("lg", width) ? "h4" : "body1"}
+                            color="textSecondary"
+                          >
+                            [noun]
+                          </Typography>
                         </Typography>
                       </Box>
                       <div>
                         <Box mb={2}>
                           <Typography
-                            variant={isWidthUp("lg", width) ? "h6" : "body1"}
+                            variant={isWidthUp("lg", width) ? "h5" : "body1"}
                             color="textSecondary"
                           >
-                            Lorem ipsum dolor sit amet, consetetur sadipscing
-                            elitr, sed diam nonumy eirmod tempor invidunt
+                            /bəˌnæn.ə rɪˈpʌb.lɪk/ <br />
+                            an exploitative government that functions poorly for
+                            its citizenry while disproportionately benefiting a
+                            corrupt elite group or individual.
                           </Typography>
                         </Box>
-                        <Button
-                          variant="contained"
-                          color="secondary"
-                          fullWidth
-                          className={classes.extraLargeButton}
-                          classes={{ label: classes.extraLargeButtonLabel }}
-                          href="https://github.com/dunky11/react-saas-template"
-                        >
-                          Download from GitHub
-                        </Button>
                       </div>
                     </Box>
                   </Grid>
-                  <Hidden smDown>
-                    <Grid item md={6}>
-                      <ZoomImage
-                        src={`${process.env.PUBLIC_URL}/images/logged_out/headerImage.jpg`}
-                        className={classes.image}
-                        alt="header example"
-                      />
-                    </Grid>
-                  </Hidden>
                 </Box>
               </div>
             </Card>
           </Box>
         </div>
       </div>
-      <WaveBorder
-        upperColor={theme.palette.secondary.main}
-        lowerColor="#FFFFFF"
-        className={classes.waveBorder}
-        animationNegativeDelay={2}
-      />
     </Fragment>
   );
 }
