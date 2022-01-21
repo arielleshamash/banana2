@@ -11,30 +11,14 @@ import {
   isWidthUp,
 } from "@material-ui/core";
 import ZoomImage from "../../../shared/components/ZoomImage";
+import paperBackground from "../images/paperBackground.png";
 
 const styles = (theme) => ({
-  extraLargeButtonLabel: {
-    fontSize: theme.typography.body1.fontSize,
-    [theme.breakpoints.up("sm")]: {
-      fontSize: theme.typography.h6.fontSize,
-    },
-  },
-  extraLargeButton: {
-    paddingTop: theme.spacing(1.5),
-    paddingBottom: theme.spacing(1.5),
-    [theme.breakpoints.up("xs")]: {
-      paddingTop: theme.spacing(1),
-      paddingBottom: theme.spacing(1),
-    },
-    [theme.breakpoints.up("lg")]: {
-      paddingTop: theme.spacing(2),
-      paddingBottom: theme.spacing(2),
-    },
-  },
   card: {
     boxShadow: theme.shadows[4],
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
+    backgroundColor: "white",
     [theme.breakpoints.up("xs")]: {
       paddingTop: theme.spacing(3),
       paddingBottom: theme.spacing(3),
@@ -63,14 +47,13 @@ const styles = (theme) => ({
   },
   wrapper: {
     position: "relative",
-    backgroundColor: theme.palette.secondary.main,
     paddingBottom: theme.spacing(2),
+    backgroundImage: `url(${paperBackground})`,
   },
   image: {
     maxWidth: "100%",
     verticalAlign: "middle",
     borderRadius: theme.shape.borderRadius,
-    boxShadow: theme.shadows[4],
   },
   container: {
     marginTop: theme.spacing(6),
@@ -93,7 +76,7 @@ const styles = (theme) => ({
 });
 
 function HeadSection(props) {
-  const { classes, theme, width } = props;
+  const { classes, width } = props;
   return (
     <Fragment>
       <div className={classNames("lg-p-top", classes.wrapper)}>
