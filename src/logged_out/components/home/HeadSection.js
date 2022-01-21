@@ -49,6 +49,7 @@ const styles = (theme) => ({
     position: "relative",
     paddingBottom: theme.spacing(2),
     backgroundImage: `url(${paperBackground})`,
+    backgroundSize: "cover",
   },
   image: {
     maxWidth: "100%",

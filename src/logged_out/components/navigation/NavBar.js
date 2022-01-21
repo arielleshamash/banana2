@@ -6,13 +6,10 @@ import {
   Toolbar,
   Typography,
   Button,
-  Hidden,
-  IconButton,
   withStyles,
+  Avatar,
+  Box,
 } from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
-import HomeIcon from "@material-ui/icons/Home";
-import BookIcon from "@material-ui/icons/Book";
 import NavigationDrawer from "../../../shared/components/NavigationDrawer";
 
 const styles = (theme) => ({
@@ -37,23 +34,16 @@ const styles = (theme) => ({
 });
 
 function NavBar(props) {
-  const {
-    classes,
-    handleMobileDrawerOpen,
-    handleMobileDrawerClose,
-    mobileDrawerOpen,
-    selectedTab,
-  } = props;
+  const { classes, handleMobileDrawerClose, mobileDrawerOpen, selectedTab } =
+    props;
   const menuItems = [
     {
-      link: "/",
-      name: "Home",
-      icon: <HomeIcon className="text-white" />,
+      link: "/dao",
+      name: "DAO",
     },
     {
-      link: "/blog",
-      name: "Blog",
-      icon: <BookIcon className="text-white" />,
+      link: "/proposals",
+      name: "Proposals",
     },
   ];
   return (
@@ -61,59 +51,53 @@ function NavBar(props) {
       <AppBar position="absolute" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
           <div>
-            <Typography
-              variant="h4"
-              className={classes.brandText}
-              display="inline"
-              color="white"
-            >
-              Banana Republique
-            </Typography>
-            
+            <Box justifyContent="space-between" className="row">
+              <Avatar
+                src={`${process.env.PUBLIC_URL}/banana.png`}
+                sx={{ backgroundColor: "#f73378", width: 56, height: 56 }}
+              />
+              <Typography
+                variant="h4"
+                className={classes.brandText}
+                display="inline"
+                color="white"
+              >
+                Banana Republique
+              </Typography>
+            </Box>
           </div>
           <div>
-            <Hidden mdUp>
-              <IconButton
-                className={classes.menuButton}
-                onClick={handleMobileDrawerOpen}
-                aria-label="Open Navigation"
-              >
-                <MenuIcon color="white" />
-              </IconButton>
-            </Hidden>
-            <Hidden smDown>
-              {menuItems.map(element => {
-                if (element.link) {
-                  return (
-                    <Link
-                      key={element.name}
-                      to={element.link}
-                      className={classes.noDecoration}
-                      onClick={handleMobileDrawerClose}
-                    >
-                      <Button
-                        color="white"
-                        size="large"
-                        classes={{ text: classes.menuButtonText }}
-                      >
-                        {element.name}
-                      </Button>
-                    </Link>
-                  );
-                }
+            {menuItems.map((element) => {
+              if (element.link) {
                 return (
-                  <Button
-                    color="white"
-                    size="large"
-                    onClick={element.onClick}
-                    classes={{ text: classes.menuButtonText }}
+                  <Link
                     key={element.name}
+                    to={element.link}
+                    className={classes.noDecoration}
+                    onClick={handleMobileDrawerClose}
                   >
-                    {element.name}
-                  </Button>
+                    <Button
+                      color="white"
+                      size="large"
+                      classes={{ text: classes.menuButtonText }}
+                    >
+                      {element.name}
+                    </Button>
+                  </Link>
                 );
-              })}
-            </Hidden>
+              }
+              return (
+                <Button
+                  color="white"
+                  size="large"
+                  onClick={element.onClick}
+                  classes={{ text: classes.menuButtonText }}
+                  key={element.name}
+                >
+                  {element.name}
+                </Button>
+              );
+            })}
           </div>
         </Toolbar>
       </AppBar>
@@ -130,7 +114,6 @@ function NavBar(props) {
 
 NavBar.propTypes = {
   classes: PropTypes.object.isRequired,
-  handleMobileDrawerOpen: PropTypes.func,
   handleMobileDrawerClose: PropTypes.func,
   mobileDrawerOpen: PropTypes.bool,
   selectedTab: PropTypes.string,
